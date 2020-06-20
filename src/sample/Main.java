@@ -1,3 +1,6 @@
+
+//Program nie jest ostateczną wersją i zawiera liczne błędy.
+
 package sample;
 
 import javafx.application.Application;
@@ -77,7 +80,7 @@ public class Main extends Application {
         stpane.getChildren().remove(zarz);
         stpane.getChildren().add(wybierz);
     }
-    //comita
+
     public static void main(String[] args) {
         launch(args);
         }
