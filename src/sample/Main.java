@@ -12,7 +12,7 @@ import java.sql.*;
 
 public class Main extends Application {
     static Pane stpane=new Pane();
-    static  Pane root, zarz,dodaj,usun, zapisz_edyt;
+    static  Pane root, zarz,dodaj,usun, zapisz_edyt,wybierz,lekarz;
     @Override
     public void start(Stage primaryStage) throws Exception{
         stpane.setId("0");
@@ -21,6 +21,8 @@ public class Main extends Application {
         dodaj = FXMLLoader.load(getClass().getResource("dodaj_pacjenta.fxml"));
         usun = FXMLLoader.load(getClass().getResource("usun_pacjenta.fxml"));
         zapisz_edyt = FXMLLoader.load(getClass().getResource("zapisz_edycje_pacjenta.fxml"));
+        wybierz = FXMLLoader.load(getClass().getResource("wybierz_pac.fxml"));
+        lekarz = FXMLLoader.load(getClass().getResource("wybor_lekarza.fxml"));
         stpane.getChildren().add(root);
         primaryStage.setTitle("Przychodnia");
 
@@ -29,6 +31,11 @@ public class Main extends Application {
         primaryStage.show();
 
 
+    }
+    static void wybierz_wybor_lekarza()
+    {
+        stpane.getChildren().remove(wybierz);
+        stpane.getChildren().add(lekarz);
     }
     static void Nextpage()
     {
@@ -65,7 +72,13 @@ public class Main extends Application {
         stpane.getChildren().remove(zapisz_edyt);
         stpane.getChildren().add(zarz);
     }
+    static void umow_zarz_pac()
+    {
+        stpane.getChildren().remove(zarz);
+        stpane.getChildren().add(wybierz);
+    }
+    //comita
     public static void main(String[] args) {
         launch(args);
-    }
+        }
 }

@@ -2,6 +2,7 @@ package sample;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 
 import java.sql.*;
 
@@ -50,32 +51,32 @@ public  class Selekty {
         return lek_password;
     }
 
-    public static String select_nazwisko(){
-        String surname="";
+    public static int select_id_lek(String value1){
+        int id=0;
         try {
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/przychodnia", "root", "");
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT nazwisko FROM lekarze");
+            ResultSet rs = stmt.executeQuery("SELECT id FROM lekarze where nazwisko ="+"'"+value1+"'");
             while(rs.next()){
-                surname = rs.getString("nazwisko");
-                System.out.println(", Last: " + surname);
+                id = rs.getInt("id");
+                System.out.println(", Last: " + id);
             }
             rs.close();
 
-            System.out.println("Statement executed");
+            System.out.println("Statement executed value id: "+id);
         } catch(SQLException exc) {
             System.out.println("Nieudane połączenie z " );
             System.out.println(exc);
             System.exit(1);
         }
-        return surname;
+        return id;
     }
-    public static int select_id(){
+    public static int select_id(String pesel){
         int id=0;
         try {
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/przychodnia", "root", "");
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT id FROM pacjenci where id="+id);
+            ResultSet rs = stmt.executeQuery("SELECT id FROM pacjenci where pesel="+pesel);
             while(rs.next()){
                 id = rs.getInt("id");
                 System.out.println(", Id"+": " + id);
@@ -90,11 +91,12 @@ public  class Selekty {
         }
         return id;
     }
+
     public static  ObservableList<Pacjent> select_tabela(){
         String name="";
         String surname="";
         String pesel;
-        int rok;
+        int rok=0;
         String adres="";
         String miasto="";
         ObservableList<Pacjent> ob= FXCollections.observableArrayList();
@@ -110,7 +112,7 @@ public  class Selekty {
                 rok=rs.getInt("rok");
                 adres=rs.getString("adres");
                 miasto=rs.getString("miasto");
-                System.out.println(", Last: " + name);
+
                 ob.add(new Pacjent(name,surname,adres,miasto,rok,pesel));
             }
             rs.close();
@@ -123,4 +125,32 @@ public  class Selekty {
         }
         return ob;
     }
+
+    public static  ObservableList<Lekarz> select_tabela3(){
+
+        String name="";
+        String surname="";
+        String specjalizacja;
+        ObservableList<Lekarz> lek= FXCollections.observableArrayList();
+
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/przychodnia", "root", "");
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT imie, nazwisko, specjalizacja from lekarze as l inner join specjalizacje as s on l.id=s.lekid");
+            while(rs.next()){
+                name = rs.getString("imie");
+                surname=rs.getString("nazwisko");
+                specjalizacja=rs.getString("specjalizacja");
+                lek.add(new Lekarz(name,surname,specjalizacja));
+            }
+            rs.close();
+            System.out.println("Statement executed");
+        } catch(SQLException exc) {
+            System.out.println("Nieudane połączenie z " );
+            System.out.println(exc);
+            System.exit(1);
+        }
+        return lek;
+    }
+
 }

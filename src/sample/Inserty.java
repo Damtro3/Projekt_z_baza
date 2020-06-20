@@ -1,6 +1,7 @@
 package sample;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 public class Inserty {
 
@@ -18,4 +19,20 @@ public class Inserty {
 
 
     }
+    public static void insert_date( LocalDate value1 ,int value2,int value3){
+
+        try {
+            Connector conn = Connector.getInstance();
+            conn.update("insert into Wizyta"+"(data, flgStatus, pacid,lekid)"+"values ("+"'"+value1+"'"+",'1'"+","+value2+",'"+value3+"'"+")");
+            System.out.println("Statement executed");
+        } catch(SQLException exc) {
+            System.out.println("Nieudane połączenie z " );
+            System.out.println(exc);
+            System.exit(1);
+        }
+
+
+    }
+
+
 }

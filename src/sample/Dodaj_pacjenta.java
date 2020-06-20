@@ -19,7 +19,7 @@ public class Dodaj_pacjenta {
 
         String v1,v2,v3,v4,v6;
         int v5=0;
-       long zakres1,zakres2;
+       long zakres1;
         v1=name.getText();
         v2=surname.getText();
         v3=adress.getText();
@@ -36,7 +36,7 @@ public class Dodaj_pacjenta {
             if( v5>=1900 && v5<=2020)
             {
                 System.out.println(wstaw_rok());
-                if(v6.length()==11 && zakres1>100000000 && v6.charAt(0)==wstaw_rok().charAt(0)&&v6.charAt(2)==wstaw_rok().charAt(3)) {
+                if(v6.length()==11 && zakres1>100000000 && v6.charAt(0)==wstaw_rok().charAt(2)&&v6.charAt(1)==wstaw_rok().charAt(3)) {
                     Inserty.insert(v1, v2, v3, v4, v5, v6);
                 }
                 else{

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="538.0" prefWidth="498.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Wybierz_pacjenta">
+   <children>
+      <TableView fx:id="tab2" layoutX="17.0" onMouseClicked="#przycisk_wybierz_wybierz_pac" prefHeight="324.0" prefWidth="435.0">
+         <columns>
+            <TableColumn fx:id="pesel3" prefWidth="75.0" text="Pesel"><cellValueFactory><PropertyValueFactory property="pesel" /></cellValueFactory></TableColumn>
+            <TableColumn fx:id="name2" editable="false" prefWidth="75.0" text="Imię"><cellValueFactory><PropertyValueFactory property="firstName" /></cellValueFactory></TableColumn>
+            <TableColumn fx:id="surname2" editable="false" prefWidth="75.0" text="Nazwisko"><cellValueFactory><PropertyValueFactory property="lastName" /></cellValueFactory></TableColumn>
+         </columns>
+      </TableView>
+      <TextField fx:id="search" layoutX="14.0" layoutY="339.0" prefHeight="31.0" prefWidth="149.0" promptText="Podaj pesel">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <Button fx:id="search2" layoutX="172.0" layoutY="339.0" mnemonicParsing="false" onAction="#przycisk_szukaj_wybierz_pac" prefHeight="25.0" prefWidth="125.0" text="Szukaj">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="choose" layoutX="310.0" layoutY="339.0" mnemonicParsing="false" onAction="#przycisk_wybierz_wybierz_pac" prefHeight="25.0" prefWidth="125.0" text="Wybierz" visible="false">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>
