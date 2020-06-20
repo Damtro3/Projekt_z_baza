@@ -1,6 +1,6 @@
 
 //Program nie jest ostateczną wersją i zawiera liczne błędy.
-
+// Baza znajduje się na localhoscie pod portem 81 root bez hasła
 package sample;
 
 import javafx.application.Application;
